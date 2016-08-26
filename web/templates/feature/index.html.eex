@@ -1,0 +1,30 @@
+<h2>Listing features</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for feature <- @features do %>
+      <tr>
+        <td><%= feature.id %></td>
+        <td><%= feature.name %></td>
+        <td><%= feature.description %></td>
+
+        <td class="text-right">
+          <%= if feature.enabled do %>
+            <%= link "Disable", to: feature_path(@conn, :disable, feature), method: :post, class: "btn btn-default btn-xs" %>
+          <% else %>
+            <%= link "Enable", to: feature_path(@conn, :enable, feature), method: :post, class: "btn btn-default btn-xs" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
