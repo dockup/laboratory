@@ -6,18 +6,23 @@
 ## Usage
 
 First, add `:laboratory` to your phoenix app's mix.exs file.
-Second, add the following to your `web/router.ex` file inside the router module:
-
-    Laboratory.Router.mount_at "/lab"
-
-Third, add features that need to be toggled to `config/dev.exs`:
+Next, add the features that need to be toggled inside `config/dev.exs`:
 
 ```
 config :laboratory,
   features: [
-    {:homepage_redesign, "Homepage Redesign", "This turns on the shiny new homepage design!"}
+    {:homepage_redesign, "Homepage Redesign", "This turns on the shiny new homepage design!"},
+    etc ..
   ]
 ```
 
-Now you can use `if(Laboratory.enabled?(conn, :homepage_redesign))` in your code
-for switching the feature on/off (TODO).
+Now, add the following to your `web/router.ex` file inside the router module:
+
+    Laboratory.Router.mount_at "/lab"
+
+Now you can visit `http://localhost:4000/lab` to enable/disable the features you
+want to test.
+
+If you are the one who's developing the feature, you can use
+`if(Laboratory.enabled?(conn, :homepage_redesign))` in your code for switching the
+feature on/off (TODO).
