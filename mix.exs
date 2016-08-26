@@ -9,6 +9,7 @@ defmodule Laboratory.Mixfile do
      compilers: [:phoenix | Mix.compilers],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: "Cookie based dev feature toggles for Phoenix apps",
      deps: deps()]
   end
 
@@ -32,5 +33,13 @@ defmodule Laboratory.Mixfile do
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0", only: :dev}]
+  end
+
+  defp package do
+    [
+      maintainers: ["Emil Soman"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/code-mancers/laboratory"}
+    ]
   end
 end
