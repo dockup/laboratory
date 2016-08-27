@@ -32,14 +32,17 @@ defmodule Laboratory.Mixfile do
     [{:phoenix, ">= 1.0.0 and < 2.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:cowboy, "~> 1.0", only: :dev}]
+     {:cowboy, "~> 1.0", only: :dev},
+     {:ex_doc, ">= 0.0.0", only: :dev}]
   end
 
   defp package do
     [
       maintainers: ["Emil Soman"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/code-mancers/laboratory"}
+      links: %{"GitHub" => "https://github.com/code-mancers/laboratory"},
+      files: ~w(lib priv web) ++
+        ~w(brunch-config.js mix.exs package.json README.md)
     ]
   end
 end

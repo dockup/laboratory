@@ -26,4 +26,8 @@ defmodule Laboratory do
     Laboratory.Endpoint.config_change(changed, removed)
     :ok
   end
+
+  def enabled?(conn, feature) when is_atom(feature) do
+    conn.cookies[to_string(feature)] == "true"
+  end
 end
