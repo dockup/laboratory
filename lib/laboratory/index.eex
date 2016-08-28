@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="<%= path %>/css/app.css">
+    <title>Laboratory</title>
+  </head>
+
+  <body>
+    <div class="window">
+      <div class="window-header">
+        <div class="window-title">Features</div>
+      </div>
+      <div class="window-body">
+        <ul class="feature-rows">
+          <%= for feature <- features do %>
+            <li class="feature-row <%= if feature.enabled, do: "enabled", else: "disabled" %>">
+              <div class="feature-name"><%= feature.name %></div>
+              <div class="feature-description"><%= feature.description %></div>
+              <div class="button">
+                <%= if feature.enabled do %>
+                  <form action="<%= path %>/disable/<%= feature.id %>" method="post">
+                      <input class="button-text" type="submit" value="Disable" />
+                  </form>
+                <% else %>
+                  <form action="<%= path %>/enable/<%= feature.id %>" method="post">
+                      <input class="button-text" type="submit" value="Enable" />
+                  </form>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
