@@ -7,7 +7,7 @@ defmodule Laboratory.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     description: "Cookie based dev feature toggles for Phoenix apps",
+     description: "Cookie based dev feature toggles for Plug-based web apps",
      package: package,
      deps: deps()]
   end
