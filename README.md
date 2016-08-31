@@ -5,7 +5,14 @@ in their Plug-based web apps.
 
 ## Usage
 
-First, add `:laboratory` to your app's mix.exs file.
+Add laboratory to your mix dependencies.
+
+```elixir
+def deps do
+  [{:laboratory, "~> 0.0.1"}]
+end
+```
+
 Next, add the features that need to be toggled inside `config/dev.exs`:
 
 ```
