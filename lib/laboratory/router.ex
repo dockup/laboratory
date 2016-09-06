@@ -14,26 +14,27 @@ defmodule Laboratory.Router do
   end
 
   post "/disable/:id" do
-    conn |> delete_resp_cookie(id) |> redirect_back
+    response = Laboratory.disable(id, conn: conn)
+    if Laboratory.cookie_store? do
+      redirect_back(response)
+    else
+      redirect_back(conn)
+    end
   end
 
   post "/enable/:id" do
-    conn |> put_resp_cookie(id, "true") |> redirect_back
+    response = Laboratory.enable(id, conn: conn)
+    if Laboratory.cookie_store? do
+      redirect_back(response)
+    else
+      redirect_back(conn)
+    end
   end
 
   EEx.function_from_file :def, :template, "lib/laboratory/index.eex", [:features, :path]
 
   defp features(conn) do
-    features = Application.get_env(:laboratory, :features)
-    conn = fetch_cookies(conn)
-    Enum.map features, fn ({id, name, description}) ->
-      %Feature{
-        id: id,
-        name: name,
-        description: description,
-        enabled: conn.cookies[to_string(id)] == "true"
-      }
-    end
+    Laboratory.features(conn: conn)
   end
 
   defp redirect_back(conn) do

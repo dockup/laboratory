@@ -13,15 +13,14 @@ defmodule Laboratory.Mixfile do
   end
 
   def application do
-    [mod: {Laboratory, []},
-     applications: [:plug, :cowboy, :logger]]
+    [applications: [:plug, :cowboy, :logger]]
   end
 
 
   defp deps do
     [
       {:plug, ">= 1.0.0 and < 2.0.0"},
-      {:cowboy, "~> 1.0", only: :dev},
+      {:cowboy, "~> 1.0", only: [:dev, :test]},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
