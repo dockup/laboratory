@@ -10,32 +10,20 @@ defmodule Laboratory.Router do
 
   get "/" do
     path = if conn.request_path == "/", do: "", else: conn.request_path
-    send_resp(conn, 200, template(features(conn), path))
+    send_resp(conn, 200, template(Laboratory.features, path))
   end
 
   post "/disable/:id" do
-    response = Laboratory.disable(id, conn: conn)
-    if Laboratory.cookie_store? do
-      redirect_back(response)
-    else
-      redirect_back(conn)
-    end
+    Laboratory.disable(id)
+    redirect_back(conn)
   end
 
   post "/enable/:id" do
-    response = Laboratory.enable(id, conn: conn)
-    if Laboratory.cookie_store? do
-      redirect_back(response)
-    else
-      redirect_back(conn)
-    end
+    Laboratory.enable(id)
+    redirect_back(conn)
   end
 
   EEx.function_from_file :def, :template, "lib/laboratory/index.eex", [:features, :path]
-
-  defp features(conn) do
-    Laboratory.features(conn: conn)
-  end
 
   defp redirect_back(conn) do
     [referer] = get_req_header(conn, "referer")

@@ -1,5 +1,5 @@
 defmodule Laboratory do
-  alias Laboratory.CookieStore
+  alias Laboratory.DetsStore
 
   def enabled?(id, opts \\ []) do
     get_store(opts).enabled?(id, opts)
@@ -13,7 +13,7 @@ defmodule Laboratory do
     get_store(opts).disable(id, opts)
   end
 
-  def features(opts) do
+  def features(opts \\ []) do
     feature_list = Application.get_env(:laboratory, :features)
     store = get_store(opts)
 
@@ -27,10 +27,8 @@ defmodule Laboratory do
     end
   end
 
-  def cookie_store?, do: get_store() == CookieStore
-
   defp get_store(opts \\ []) do
-    default_store = Application.get_env(:laboratory, :store) || CookieStore
-    Keyword.get(opts, :store, default_store)
+    store = Application.get_env(:laboratory, :store) || DetsStore
+    Keyword.get(opts, :store, store)
   end
 end

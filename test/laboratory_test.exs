@@ -6,11 +6,11 @@ defmodule LaboratoryTest do
   end
 
   test "enables features using DetsStore" do
-    refute Laboratory.enabled?(:foo, store: Laboratory.DetsStore)
+    refute Laboratory.enabled?(:foo)
 
-    Laboratory.enable(:foo, store: Laboratory.DetsStore)
+    Laboratory.enable(:foo)
 
-    assert Laboratory.enabled?(:foo, store: Laboratory.DetsStore)
-    refute Laboratory.enabled?(:bar, store: Laboratory.DetsStore)
+    assert Laboratory.enabled?(:foo)
+    refute Laboratory.enabled?(:bar)
   end
 end
