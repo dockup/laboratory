@@ -10,7 +10,10 @@ defmodule Laboratory.Router do
 
   get "/" do
     path = if conn.request_path == "/", do: "", else: conn.request_path
-    send_resp(conn, 200, template(features(conn), path))
+
+    conn
+    |> put_resp_content_type("text/html")
+    |> send_resp(200, template(features(conn), path))
   end
 
   post "/disable/:id" do
