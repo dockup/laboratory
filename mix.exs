@@ -27,6 +27,7 @@ defmodule Laboratory.Mixfile do
 
   defp package do
     [
+      files: ["lib", "priv", "mix.exs", "README.md"],
       maintainers: ["Emil Soman"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/dockup/laboratory"}
